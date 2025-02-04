@@ -1,0 +1,59 @@
+function doGet() {
+  const ss = SpreadsheetApp.openById('1QAnFrFfqxgUm5jqScVWlpG3Jad5PjlEEzEN-rMrHFok');
+  const sheet = ss.getSheetByName('quest');
+  const data = sheet.getDataRange().getValues();
+  
+  const result = data.slice(1).map(row => ({
+    id: row[0],
+    question: row[1],
+    answer: row[2],
+  }));
+
+  return ContentService.createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  try {
+    const ss = SpreadsheetApp.openById('1QAnFrFfqxgUm5jqScVWlpG3Jad5PjlEEzEN-rMrHFok');
+    const sheet = ss.getSheetByName('quest');
+
+    // Парсим входные данные (должны быть в формате JSON)
+    const data = JSON.parse(e.postData.contents);
+    
+    if (!data.responses || !Array.isArray(data.responses)) {
+      throw new Error("Invalid data format. Expected { responses: [...] }");
+    }
+
+    const responses = data.responses; // Массив { id, question, answer }
+    
+    // Записываем данные в таблицу
+    responses.forEach(response => {
+      const newRow = [
+        generateId(sheet),
+        response.question,
+        response.answer
+      ];
+      sheet.appendRow(newRow);
+    });
+
+    // Возвращаем успешный ответ
+    return ContentService.createTextOutput(JSON.stringify({ 
+      status: 'success', 
+      message: `${responses.length} responses added successfully` 
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ 
+      status: 'error', 
+      message: error.message 
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function generateId(sheet) {
+  const lastRow = sheet.getLastRow();
+  const lastId = lastRow > 1 ? sheet.getRange(lastRow, 1).getValue() : 0;
+  if (isNaN(lastId)) throw new Error('Invalid ID in the first column');
+  return Number(lastId) + 1;
+}

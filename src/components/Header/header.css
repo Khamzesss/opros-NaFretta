@@ -1,0 +1,44 @@
+.header {
+  background-image: url(../../assets/img/Кирпич2.jpg);
+  border-radius: 0 0 30px 30px;
+  padding: 10px 0;
+  border: 3px solid yellow;
+  animation: blink 2.3s infinite;
+}
+
+.header-img {
+  display: block;
+  margin: 0 auto;
+}
+
+.header-slogan {
+  text-align: center;
+  font-size: 22px;
+  text-shadow: 1px 1px 2px yellow;
+  animation: color-change 2s infinite;
+}
+
+@keyframes blink {
+  0% {
+    border-color: yellow;
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: yellow;
+  }
+}
+
+@keyframes color-change {
+    0% {
+      color: yellow;
+    }
+    50% {
+      color: #ffffff;
+    }
+    100% {
+      color: yellow;
+    }
+  }
+  
