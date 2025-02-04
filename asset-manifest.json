@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/opros-NaFretta/static/css/main.26909c7c.css",
+    "main.js": "/opros-NaFretta/static/js/main.13b61f17.js",
+    "static/media/Кирпич.jpg": "/opros-NaFretta/static/media/Кирпич.f2697f4868b9c5ccb60e.jpg",
+    "static/media/Кирпич2.jpg": "/opros-NaFretta/static/media/Кирпич2.b165a0c4869a1a6771d6.jpg",
+    "static/media/Picsart_24-10-22_10-51-09-888.png": "/opros-NaFretta/static/media/Picsart_24-10-22_10-51-09-888.37af4dbe964f355dfd76.png",
+    "index.html": "/opros-NaFretta/index.html",
+    "main.26909c7c.css.map": "/opros-NaFretta/static/css/main.26909c7c.css.map",
+    "main.13b61f17.js.map": "/opros-NaFretta/static/js/main.13b61f17.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.26909c7c.css",
+    "static/js/main.13b61f17.js"
+  ]
+}
